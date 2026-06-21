@@ -11,7 +11,7 @@ exports.getStudents = async (req,res,next)=>{
 };
 
 
-exports.getStudentById = async (req, res) => {
+exports.getStudentById = async (req, res,next) => {
     try {
         const student = await studentService.getStudentById(
             req.params.id
@@ -31,7 +31,7 @@ exports.getStudentById = async (req, res) => {
     }
 };
 
-exports.createStudent = async (req, res) => {
+exports.createStudent = async (req, res,next) => {
     try {
 
         const { name, email } = req.body;
@@ -50,7 +50,7 @@ exports.createStudent = async (req, res) => {
     }
 };
 
-exports.updateStudent = async (req, res) => {
+exports.updateStudent = async (req, res,next) => {
     try {
 
         const { id } = req.params;
@@ -82,7 +82,7 @@ exports.updateStudent = async (req, res) => {
     }
 };
 
-exports.deleteStudent = async (req, res) => {
+exports.deleteStudent = async (req, res,next) => {
     try {
 
         const { id } = req.params;
