@@ -35,3 +35,84 @@ exports.createEnrollment = async (
 
     }
 };
+
+
+
+exports.getEnrollments = async (req,res,next)=>{
+
+    try{
+
+        const enrollments =
+            await enrollmentService.getEnrollments();
+
+        res.json(enrollments);
+
+    }catch(err){
+
+        next(err);
+
+    }
+};
+
+exports.getEnrollmentById = async (
+    req,
+    res,
+    next
+)=>{
+
+    try{
+
+        const enrollment =
+            await enrollmentService.getEnrollmentById(
+                req.params.id
+            );
+
+        if(!enrollment){
+
+            return res.status(404).json({
+                message:"Enrollment not found"
+            });
+
+        }
+
+        res.json(enrollment);
+
+    }catch(err){
+
+        next(err);
+
+    }
+};
+
+exports.deleteEnrollment = async (
+    req,
+    res,
+    next
+)=>{
+
+    try{
+
+        const enrollment =
+            await enrollmentService.deleteEnrollment(
+                req.params.id
+            );
+
+        if(!enrollment){
+
+            return res.status(404).json({
+                message:"Enrollment not found"
+            });
+
+        }
+
+        res.json({
+            message:"Enrollment deleted successfully",
+            enrollment
+        });
+
+    }catch(err){
+
+        next(err);
+
+    }
+};
